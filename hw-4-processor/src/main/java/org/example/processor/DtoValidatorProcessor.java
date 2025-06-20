@@ -1,5 +1,6 @@
 package org.example.processor;
 
+import com.google.auto.service.AutoService;
 import com.palantir.javapoet.*;
 import org.example.annotation.GenerateDtoValidator;
 import javax.annotation.processing.*;
@@ -10,6 +11,7 @@ import javax.tools.Diagnostic;
 import java.io.IOException;
 import java.util.Set;
 
+@AutoService(javax.annotation.processing.Processor.class)
 @SupportedAnnotationTypes("org.example.annotation.GenerateDtoValidator")
 @SupportedSourceVersion(SourceVersion.RELEASE_21)
 public class DtoValidatorProcessor extends AbstractProcessor {
@@ -48,7 +50,6 @@ public class DtoValidatorProcessor extends AbstractProcessor {
                     .addParameter(ClassName.get(dtoClass), "dto")
                     .addException(IllegalArgumentException.class);
 
-            // Для кожного поля перевіряємо @NotEmpty і @MaxLength
             for (VariableElement field : ElementFilter.fieldsIn(dtoClass.getEnclosedElements())) {
                 String fld = field.getSimpleName().toString();
                 String getter = "get" + Character.toUpperCase(fld.charAt(0)) + fld.substring(1) + "()";

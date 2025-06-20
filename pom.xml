@@ -7,11 +7,48 @@
     <groupId>org.example</groupId>
     <artifactId>hw-4-annotation-processing</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>hw-4-annotation</module>
+        <module>hw-4-processor</module>
+        <module>hw-4-app</module>
+    </modules>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+<!--        <maven.compiler.source>21</maven.compiler.source>-->
+<!--        <maven.compiler.target>21</maven.compiler.target>-->
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <javapoet.version>0.7.0</javapoet.version>
     </properties>
-    
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <release>21</release>
+
+<!--                    <annotationProcessorPaths>-->
+<!--                        <path>-->
+<!--                            <groupId>${project.groupId}</groupId>-->
+<!--                            <artifactId>${project.artifactId}</artifactId>-->
+<!--                            <version>${project.version}</version>-->
+<!--                        </path>-->
+<!--                        <path>-->
+<!--                            <groupId>com.palantir.javapoet</groupId>-->
+<!--                            <artifactId>javapoet</artifactId>-->
+<!--                            <version>${javapoet.version}</version>-->
+<!--                        </path>-->
+<!--                    </annotationProcessorPaths>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
